@@ -31,8 +31,8 @@ Display.prototype.displayRow = function(row) {
 			  ' locationName="' + row.locationName +
 			  '" latitude=' + row.latitude + 
 			  ' longitude=' + row.longitude + 
-			  ' description=' + row.description + 
-			  ' type=radio name=responseGroup />';
+			  ' description="' + row.description + 
+			  '" type=radio name=responseGroup />';
 	$('#response').append(coreString + 
 			textToDisplay + '</li>');	
 };
