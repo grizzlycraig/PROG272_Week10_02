@@ -39,14 +39,19 @@ var MapLocations = (function(displayInit, initUtilities) {
 	};
 */
 
-	var showLocations = function() {
+	var showLocations = function(boolInserting) {
 		display.clearResponse();
 		var count = 0;
+		var lastLocIndex = ($(locationsList).length - 1);	// remember: 0-based...
 		$(locationsList).each(function() {
 			$(this).each(function() {
 				this.itemName = 'item' + count++;
 				display.displayRow(this);
 			});
+		// BUG FIX: if we're inserting, go ahead and check the radio button
+		if ( boolInserting) {
+			$("input[name=responseGroup]:radio:last").attr('checked', true);
+		}
 		});
 	};
 
@@ -60,7 +65,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			dataType : "json",
 			success : function(data) {
 				locationsList = data;
-				showLocations();
+				showLocations(false);	// We're NOT inserting a new loc here..
 				$('#responseGroup').change(radioSelection);
 				$("input[name=responseGroup]:radio:first").attr('checked', true);
 				radioSelection();
@@ -116,7 +121,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		var newLoc = new EasyMapLocation(locationName, latitude, longitude, description); // KLUDGE blank descrip for now...
 		var query = newLoc.toJSON();
 		locationsList.push(query);
-		showLocations();
+		showLocations(true);	// We ARE IN FACT inserting a new loc here..
 	};
 
 	MapLocations.prototype.deleteItem = function() {
@@ -127,7 +132,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		clearResponse('Called delete item: ' + selectedItem);
 		query = "itemName=" + selectedItem;
 		utilities.deleteFromArray2(locationsList, selectedItem);			
-		showLocations();	
+		showLocations(false);	// We're NOT inserting a new loc here..	
 	};
 
 	// COMMENT THIS FOR NOW TO STOP MY CONFUSION 
