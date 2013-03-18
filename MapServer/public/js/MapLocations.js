@@ -113,7 +113,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		locInfo.locationName = $.trim($('#locationName').val());
 		locInfo.latitude = $.trim($('#latitude').val());
 		locInfo.longitude = $.trim($('#longitude').val());
-		if (!utilities.readyForUpdate(locationName, latitude, longitude)) {
+		if (!utilities.readyForUpdate(locInfo.locationName, locInfo.latitude, locInfo.longitude)) {
 			alert("Please enter all required fields: City, Latitude & Longitude");
 			return null;
 		}
