@@ -48,11 +48,11 @@ var MapLocations = (function(displayInit, initUtilities) {
 				this.itemName = 'item' + count++;
 				display.displayRow(this);
 			});
+		});
 		// BUG FIX: if we're inserting, go ahead and check the radio button
 		if ( boolInserting) {
 			$("input[name=responseGroup]:radio:last").attr('checked', true);
 		}
-		});
 	};
 
 	MapLocations.prototype.getLocations = function(callback) {
@@ -135,6 +135,13 @@ var MapLocations = (function(displayInit, initUtilities) {
 		showLocations(false);	// We're NOT inserting a new loc here..	
 	};
 
+	MapLocations.prototype.clearFields() {
+		$('#locationName').val("");
+		$('#latitude').val("")
+		$('#longitude').val("");
+		$('#description').val("");
+	}
+	
 	// COMMENT THIS FOR NOW TO STOP MY CONFUSION 
 	/* 
 	// TODO: Get this method working so we can update an existing
@@ -176,6 +183,7 @@ $(document).ready(function() {
 	$('button:#saveLocations').click(locations.saveLocations);
 	$('button:#update').click(locations.update);
 	$('button:#deleteitem').click(locations.deleteItem);
+	$('button:#clearFields').click(locations.clearFields);
 	$('button:#testAzureSimpleDb').click(locations.testAzureSimpleDb);
 });
 
