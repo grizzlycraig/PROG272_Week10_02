@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var port = process.env.port || 30025;
 app.use(express.bodyParser());
-var locationsFileName = 'data/Presidents.json';
+var locationsFileName = 'data/MapLocations.json';
 
 app.get('/', function(req, res) {
 	var html = fs.readFileSync('public/index.html');
