@@ -43,8 +43,8 @@ var MapLocations = (function(displayInit, initUtilities) {
 		//if (locDetails.length = 3) {
 		//	$('#middleName').val(middleName);
 		//}
-		$('#middleName').val(latitudey)
-		$('#lastName').val(longitudey);
+		$('#latitude').val(latitudey)
+		$('#longitude').val(longitudey);
 	};
 
 	var clearResponse = function(debugMessage) {
@@ -111,8 +111,8 @@ var MapLocations = (function(displayInit, initUtilities) {
 	function getNames() {
 		var names = {};
 		names.firstName = $.trim($('#firstName').val());
-		names.middleName = $.trim($('#middleName').val());
-		names.lastName = $.trim($('#lastName').val());
+		names.middleName = $.trim($('#latitude').val());
+		names.lastName = $.trim($('#longitude').val());
 		if (!utilities.readyForUpdate(firstName, lastName)) {
 			alert("Please enter a name");
 			return null;
@@ -129,7 +129,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 	};
 
 
-
+	// KLUDGE ADDING needs help here...
 	var insertRecord = function(firstName, middleName, lastName) {
 		var pName = firstName + " " + middleName + " " + lastName;
 		display.showDebug("inserting: " + pName);
