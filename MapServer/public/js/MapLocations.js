@@ -181,9 +181,9 @@ var MapLocations = (function(displayInit, initUtilities) {
 
 $(document).ready(function() {
 	var locations = new MapLocations(new Display(), new Utilities());
-	$('button:#getPresidents').click(locations.getLocations);
+	$('button:#getLocations').click(locations.getLocations);
 	$('button:#insertLocation').click(locations.insertLocation);
-	$('button:#savePresidents').click(locations.saveLocations);
+	$('button:#saveLocations').click(locations.saveLocations);
 	$('button:#update').click(locations.update);
 	$('button:#deleteitem').click(locations.deleteItem);
 	$('button:#testAzureSimpleDb').click(locations.testAzureSimpleDb);
