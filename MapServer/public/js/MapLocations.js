@@ -65,7 +65,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			cache : false,
 			dataType : "json",
 			success : function(data) {
-				locationList = data;
+				locationsList = data;
 				showPresidents();
 				$('#responseGroup').change(radioSelection);
 				$("input[name=responseGroup]:radio:first").attr('checked', true);
