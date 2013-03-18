@@ -8,8 +8,8 @@ Utilities = (function() {
 		return ((!value) || (value === "") );
 	}
 
-	Utilities.prototype.readyForUpdate = function(firstName, lastName, longitude) {
-		var failure = isEmptyString(firstName) || isEmptyString(lastName) || isEmptyString(longitude);
+	Utilities.prototype.readyForUpdate = function(locationName, latitude, longitude) {
+		var failure = isEmptyString(locationName) || isEmptyString(latitude) || isEmptyString(longitude);
 		return !failure;
 	}
 
