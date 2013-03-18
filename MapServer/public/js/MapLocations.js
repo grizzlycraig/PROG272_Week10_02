@@ -61,7 +61,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		});
 	};
 
-	MapLocations.prototype.getPresidents = function(callback) {
+	MapLocations.prototype.getLocations = function(callback) {
 		clearResponse("Get Locations called");
 		locationMode = true;
 		request = $.ajax({
