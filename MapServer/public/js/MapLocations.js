@@ -66,7 +66,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		locationMode = true;
 		request = $.ajax({
 			type : "get",
-			url : '/getPresidents',
+			url : '/getLocations',
 			cache : false,
 			dataType : "json",
 			success : function(data) {
@@ -84,12 +84,12 @@ var MapLocations = (function(displayInit, initUtilities) {
 		});
 	};
 	
-	MapLocations.prototype.savePresidents = function() {
+	MapLocations.prototype.saveLocations = function() {
 		var data = { details: 'presidents', data: JSON.stringify(locationsList) };
 		$.ajax(
 		{
 			type: "POST",
-			url: '/savePresidents',
+			url: '/saveLocations',
 			dataType: "json",
 			cache: 'False',
 			data: data, 
@@ -176,12 +176,12 @@ var MapLocations = (function(displayInit, initUtilities) {
 })();
 
 $(document).ready(function() {
-	var presidents = new MapLocations(new Display(), new Utilities());
-	$('button:#getPresidents').click(presidents.getPresidents);
-	$('button:#insertPresident').click(presidents.insertPresident);
-	$('button:#savePresidents').click(presidents.savePresidents);
-	$('button:#update').click(presidents.update);
-	$('button:#deleteitem').click(presidents.deleteItem);
-	$('button:#testAzureSimpleDb').click(presidents.testAzureSimpleDb);
+	var locations = new MapLocations(new Display(), new Utilities());
+	$('button:#getPresidents').click(locations.getLocations);
+	$('button:#insertPresident').click(locations.insertPresident);
+	$('button:#savePresidents').click(locations.saveLocations);
+	$('button:#update').click(locations.update);
+	$('button:#deleteitem').click(locations.deleteItem);
+	$('button:#testAzureSimpleDb').click(locations.testAzureSimpleDb);
 });
 
