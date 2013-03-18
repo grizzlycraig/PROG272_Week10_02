@@ -122,7 +122,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		var pName = firstName + " " + middleName + " " + lastName;
 		display.showDebug("inserting: " + pName);
 		clearResponse('called putitem');
-		var president = new EasyPresident(pName, 5, 6, 7, 8);
+		var president = new EasyMapLocation(pName, 5, 6, 7, 8);
 		var query = president.toJSON();
 		locationsList.push(query);
 		showPresidents();

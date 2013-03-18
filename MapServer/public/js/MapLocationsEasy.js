@@ -4,7 +4,7 @@
 
 /*global ELF:true*/
 
-EasyPresident = (function() {
+EasyMapLocation = (function() {
 
 	function withValue(value) {
 		var d = withValue.d || (withValue.d = {
