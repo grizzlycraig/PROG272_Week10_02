@@ -108,34 +108,31 @@ var MapLocations = (function(displayInit, initUtilities) {
 	}
 
 
-	function getNames() {
-		var names = {};
-		names.firstName = $.trim($('#firstName').val());
-		names.middleName = $.trim($('#latitude').val());
-		names.lastName = $.trim($('#longitude').val());
-		if (!utilities.readyForUpdate(firstName, lastName)) {
-			alert("Please enter a name");
+	function getLocInfo() {
+		var locInfo = {};
+		locInfo.locationName = $.trim($('#locationName').val());
+		locInfo.latitude = $.trim($('#latitude').val());
+		locInfo.longitude = $.trim($('#longitude').val());
+		if (!utilities.readyForUpdate(locationName, latitude, longitude)) {
+			alert("Please enter all required fields: City, Latitude & Longitude");
 			return null;
 		}
-		return names;
+		return locInfo;
 	}
 
 
-	MapLocations.prototype.insertPresident = function() {
-		names = getNames();
-		if (names) {
-			insertRecord(names.firstName, names.middleName, names.lastName);
+	MapLocations.prototype.insertLocation = function() {
+		locInfo = getLocInfo();
+		if (locInfo) {
+			insertRecord(locInfo.locationName, locInfo.latitude, locInfo.longitude);
 		}
 	};
 
-
-	// KLUDGE ADDING needs help here...
-	var insertRecord = function(firstName, middleName, lastName) {
-		var pName = firstName + " " + middleName + " " + lastName;
-		display.showDebug("inserting: " + pName);
+	var insertRecord = function(locationName, latitude, longitude) {
+		display.showDebug("Inserting city: " + locationName);
 		clearResponse('called putitem');
-		var president = new EasyMapLocation(pName, 5, 6, 7, 8);
-		var query = president.toJSON();
+		var newLoc = new EasyMapLocation(locationName, latitude, longitude, ""); // KLUDGE blank descrip for now...
+		var query = newLoc.toJSON();
 		locationsList.push(query);
 		showLocations();
 	};
@@ -185,7 +182,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 $(document).ready(function() {
 	var locations = new MapLocations(new Display(), new Utilities());
 	$('button:#getPresidents').click(locations.getLocations);
-	$('button:#insertPresident').click(locations.insertPresident);
+	$('button:#insertPresident').click(locations.insertLocation);
 	$('button:#savePresidents').click(locations.saveLocations);
 	$('button:#update').click(locations.update);
 	$('button:#deleteitem').click(locations.deleteItem);
