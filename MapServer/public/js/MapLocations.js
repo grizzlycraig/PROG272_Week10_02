@@ -14,22 +14,27 @@ var MapLocations = (function(displayInit, initUtilities) {
 	var radioSelection = function() {
 		selectedItem = $("input[name=responseGroup]:checked").attr('id');
 		locationName = $("input[name=responseGroup]:checked").attr('presidentName');
-		var names = locationName.split(' ');
+		var locDetails = locationName.split(' ');
 		var firstName = names[0];
 		var lastName = '';
 		var middleName = undefined;
-		if (names.length === 3) {
-			var middleName = names[1];
-			lastName = names[2];
+		
+		// IF there are actually four parts, then there
+		// was a description... otherwise, NOT. 
+		if (locDetails.length === 3) {
+			var middleName = locDetails[1];
+			lastName = locDetails[2];
 		} else {
-			lastName = names[1];
+			lastName = locDetails[1];
 		}
 		
 		if (middleName !== undefined)
 			middleName = ($.trim(middleName) === '-' ? '' : $.trim(middleName));
 		display.showDebug(selectedItem);
 		$('#firstName').val(firstName);
-		if (names.length = 3) {
+		
+		// KLUDGE BUG FIX HERE??  ASSIGNING 3 to .length?!?
+		if (locDetails.length = 3) {
 			$('#middleName').val(middleName);
 		}
 		$('#lastName').val(lastName);
@@ -45,7 +50,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		window.location.replace('/testAzureSimpleDb');
 	};
 
-	var showPresidents = function() {
+	var showLocations = function() {
 		display.clearResponse();
 		var count = 0;
 		$(locationsList).each(function() {
@@ -66,7 +71,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			dataType : "json",
 			success : function(data) {
 				locationsList = data;
-				showPresidents();
+				showLocations();
 				$('#responseGroup').change(radioSelection);
 				$("input[name=responseGroup]:radio:first").attr('checked', true);
 				radioSelection();
@@ -125,7 +130,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		var president = new EasyMapLocation(pName, 5, 6, 7, 8);
 		var query = president.toJSON();
 		locationsList.push(query);
-		showPresidents();
+		showLocations();
 	};
 
 	MapLocations.prototype.deleteItem = function() {
@@ -136,7 +141,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		clearResponse('Called delete item: ' + selectedItem);
 		query = "itemName=" + selectedItem;
 		utilities.deleteFromArray2(locationsList, selectedItem);			
-		showPresidents();	
+		showLocations();	
 	};
 
 	// TODO: Get this method working so we can update an existing

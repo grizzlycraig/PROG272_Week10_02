@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var port = process.env.port || 30025;
 app.use(express.bodyParser());
-var presidentsFileName = 'data/Presidents.json';
+var locationsFileName = 'data/Presidents.json';
 
 app.get('/', function(req, res) {
 	var html = fs.readFileSync('public/index.html');
@@ -15,9 +15,9 @@ app.get('/', function(req, res) {
 	res.end();
 });
 
-app.get('/getPresidents', function(request, response) {
-	console.log("Get Presidents called");
-	var json = fs.readFileSync(presidentsFileName);
+app.get('/getLocations', function(request, response) {
+	console.log("getLocations called");
+	var json = fs.readFileSync(locationsFileName);
 	response.send(json);
 });
 
@@ -35,8 +35,8 @@ function writeToFile(fileName, json) {
 }
 
 // Use post when you want to send large chunks of data
-app.post('/savePresidents', function(request, result) {
-	console.log("savePresidents called");
+app.post('/saveLocations', function(request, result) {
+	console.log("saveLocations called");
 
 	if ( typeof request.body == 'undefined') {
 		console.log("request.body is not defined. Did you add app.use(express.bodyParser()); at top");
@@ -46,7 +46,7 @@ app.post('/savePresidents', function(request, result) {
 		var json = JSON.parse(request.body.data);
 		console.log(details);
 		json = JSON.stringify(json, null, 4);
-		writeToFile(presidentsFileName, json);
+		writeToFile(locationsFileName, json);
 	}
 });
 
@@ -69,5 +69,5 @@ app.get('/testAzureSimpleDb', function(req, res) {
 
 app.use(express.static(__dirname + '/public'));
 
-console.log("listening on Port: ", port);
+console.log("Now listening on Port: ", port);
 app.listen(port); 
