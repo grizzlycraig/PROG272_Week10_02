@@ -13,7 +13,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 
 	var radioSelection = function() {
 		selectedItem = $("input[name=responseGroup]:checked").attr('id');
-		locationName = $("input[name=responseGroup]:checked").attr('locationName');
+		locationName = $("input[name=responseGroup]:checked").attr('presidentName');
 		var names = locationName.split(' ');
 		var firstName = names[0];
 		var lastName = '';
