@@ -50,6 +50,7 @@ app.post('/saveLocations', function(request, result) {
 	}
 });
 
+/*
 app.get('/putitem', function(request, result) {
 	console.log(request.query.presidentName);
 	console.log(request.query.born);
@@ -57,6 +58,7 @@ app.get('/putitem', function(request, result) {
 	writeToFile('temp.json', request.query)
 	result.send(outcome);
 });
+*/
 
 app.get('/testAzureSimpleDb', function(req, res) {
 	var html = fs.readFileSync('public/testAzureSimpleDb.html');

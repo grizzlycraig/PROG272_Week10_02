@@ -1,3 +1,7 @@
+/**
+ * @author CGM from Charlie's archetypes
+ */
+
 var MapLocations = (function(displayInit, initUtilities) {
 
 	var display = null;
@@ -16,35 +20,12 @@ var MapLocations = (function(displayInit, initUtilities) {
 		locationName = $("input[name=responseGroup]:checked").attr('locationName');
 		latitudey = $("input[name=responseGroup]:checked").attr('latitude');
 		longitudey = $("input[name=responseGroup]:checked").attr('longitude');
-		//KLUDGE FINAL add a description here? Maybe NOT if not displayed ...
+		describey = $("input[name=responseGroup]:checked").attr('description');
 		
-		/* We no longer have the "first [middle] last" paradigm for one field: use it ALL 
-		var locDetails = locationName.split(' ');
-		var firstName = locDetails[0];
-		var lastName = '';
-		var middleName = undefined;
-		
-		// IF there are actually four parts, then there
-		// was a description... otherwise, NOT. 
-		if (locDetails.length === 3) {
-			var middleName = locDetails[1];
-			lastName = locDetails[2];
-		} else {
-			lastName = locDetails[1];
-		}
-		
-		if (middleName !== undefined)
-			middleName = ($.trim(middleName) === '-' ? '' : $.trim(middleName));
-		display.showDebug(selectedItem);
-		*/ 
 		$('#locationName').val(locationName);
-		
-		// KLUDGE BUG FIX HERE??  ASSIGNING 3 to .length?!?
-		//if (locDetails.length = 3) {
-		//	$('#middleName').val(middleName);
-		//}
 		$('#latitude').val(latitudey)
 		$('#longitude').val(longitudey);
+		$('#description').val(describey);
 	};
 
 	var clearResponse = function(debugMessage) {
@@ -53,9 +34,10 @@ var MapLocations = (function(displayInit, initUtilities) {
 		display.showDebug(debugMessage);
 	};
 
-	MapLocations.prototype.testAzureSimpleDb = function() {
+/*	MapLocations.prototype.testAzureSimpleDb = function() {
 		window.location.replace('/testAzureSimpleDb');
 	};
+*/
 
 	var showLocations = function() {
 		display.clearResponse();
@@ -92,7 +74,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 	};
 	
 	MapLocations.prototype.saveLocations = function() {
-		var data = { details: 'presidents', data: JSON.stringify(locationsList) };
+		var data = { details: 'locations', data: JSON.stringify(locationsList) };
 		$.ajax(
 		{
 			type: "POST",
@@ -113,6 +95,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		locInfo.locationName = $.trim($('#locationName').val());
 		locInfo.latitude = $.trim($('#latitude').val());
 		locInfo.longitude = $.trim($('#longitude').val());
+		locInfo.description = $.trim($('#description').val());
 		if (!utilities.readyForUpdate(locInfo.locationName, locInfo.latitude, locInfo.longitude)) {
 			alert("Please enter all required fields: City, Latitude & Longitude");
 			return null;
@@ -120,18 +103,17 @@ var MapLocations = (function(displayInit, initUtilities) {
 		return locInfo;
 	}
 
-
 	MapLocations.prototype.insertLocation = function() {
 		locInfo = getLocInfo();
 		if (locInfo) {
-			insertRecord(locInfo.locationName, locInfo.latitude, locInfo.longitude);
+			insertRecord(locInfo.locationName, locInfo.latitude, locInfo.longitude, locInfo.description);
 		}
 	};
 
-	var insertRecord = function(locationName, latitude, longitude) {
+	var insertRecord = function(locationName, latitude, longitude, description) {
 		display.showDebug("Inserting city: " + locationName);
 		clearResponse('called putitem');
-		var newLoc = new EasyMapLocation(locationName, latitude, longitude, ""); // KLUDGE blank descrip for now...
+		var newLoc = new EasyMapLocation(locationName, latitude, longitude, description); // KLUDGE blank descrip for now...
 		var query = newLoc.toJSON();
 		locationsList.push(query);
 		showLocations();
@@ -148,6 +130,8 @@ var MapLocations = (function(displayInit, initUtilities) {
 		showLocations();	
 	};
 
+	// COMMENT THIS FOR NOW TO STOP MY CONFUSION 
+	/* 
 	// TODO: Get this method working so we can update an existing
 	// record
 	MapLocations.prototype.update = function() {
@@ -156,7 +140,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			return;
 		}
 
-		var names = getNames();
+		var names = getLocInfo();
 		if ((names) === null)
 			return;
 
@@ -174,6 +158,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			error : display.showError
 		});
 	};
+	*/
 	
 	return MapLocations;
 
