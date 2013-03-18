@@ -15,7 +15,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		selectedItem = $("input[name=responseGroup]:checked").attr('id');
 		locationName = $("input[name=responseGroup]:checked").attr('presidentName');
 		var locDetails = locationName.split(' ');
-		var firstName = names[0];
+		var firstName = locDetails[0];
 		var lastName = '';
 		var middleName = undefined;
 		
