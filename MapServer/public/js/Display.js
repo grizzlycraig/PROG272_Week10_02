@@ -13,20 +13,24 @@ Display.prototype.clearResponse = function()
 };
 
 Display.prototype.isValidRow = function(row) {
-	return !( (row.MiddleName === undefined) || 
-			(row.MiddleName === '[object Object]') || 
-			(row.MiddleName === '-') );	
+	return !( (row.description === undefined) || 
+			(row.description === '[object Object]') || 
+			(row.description === '-') );	
 };
 
 
 Display.prototype.displayRow = function(row) {
-	var middle = (!thisDisplay.isValidRow(row)) ? '' : row.MiddleName;
-	var displayMiddle = (!thisDisplay.isValidRow(row)) ? '-' : row.MiddleName;	
-	textToDisplay = row.presidentName + " - born: " + row.born + " died: " + row.died;
+	//var middle = (!thisDisplay.isValidRow(row)) ? '' : row.MiddleName;
+	var description = (!thisDisplay.isValidRow(row)) ? '' : row.description;
+	
+	//var displayMiddle = (!thisDisplay.isValidRow(row)) ? '-' : row.MiddleName;	
+	var displayDescription = (!thisDisplay.isValidRow(row)) ? '---' : row.description;	
+	
+	textToDisplay = "City: " + row.locationName + " (Latitude: " + row.latitude + " Longitude: " + row.longitude + ")";
 	var coreString = '<li><input id=' + row.itemName + 
-			  ' presidentName="' + row.presidentName +
-			  '" born=' + row.born + 
-			  ' died=' + row.died + 
+			  ' locationName="' + row.locationName +
+			  '" latitude=' + row.latitude + 
+			  ' longitude=' + row.longitude + 
 			  ' type=radio name=responseGroup />';
 	$('#response').append(coreString + 
 			textToDisplay + '</li>');	
