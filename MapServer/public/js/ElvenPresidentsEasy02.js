@@ -4,7 +4,7 @@
 
 /*global ELF:true*/
 
-Map.own.EasyPresident = (function() {
+EasyPresident = (function() {
 
 	function withValue(value) {
 		var d = withValue.d || (withValue.d = {

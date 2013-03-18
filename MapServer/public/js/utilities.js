@@ -1,4 +1,4 @@
-var Utilities = (function() {
+Utilities = (function() {
 
 	function Utilities() {
 		
