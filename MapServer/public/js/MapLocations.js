@@ -137,7 +137,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 
 	MapLocations.prototype.clearFields() {
 		$('#locationName').val("");
-		$('#latitude').val("")
+		$('#latitude').val("");
 		$('#longitude').val("");
 		$('#description').val("");
 	}
