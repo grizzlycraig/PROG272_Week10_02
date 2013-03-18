@@ -37,7 +37,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 			middleName = ($.trim(middleName) === '-' ? '' : $.trim(middleName));
 		display.showDebug(selectedItem);
 		*/ 
-		$('#firstName').val(locationName);
+		$('#locationName').val(locationName);
 		
 		// KLUDGE BUG FIX HERE??  ASSIGNING 3 to .length?!?
 		//if (locDetails.length = 3) {
