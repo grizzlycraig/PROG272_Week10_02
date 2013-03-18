@@ -182,7 +182,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 $(document).ready(function() {
 	var locations = new MapLocations(new Display(), new Utilities());
 	$('button:#getPresidents').click(locations.getLocations);
-	$('button:#insertPresident').click(locations.insertLocation);
+	$('button:#insertLocation').click(locations.insertLocation);
 	$('button:#savePresidents').click(locations.saveLocations);
 	$('button:#update').click(locations.update);
 	$('button:#deleteitem').click(locations.deleteItem);
