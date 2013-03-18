@@ -1,5 +1,5 @@
 /**
- * @author Charlie
+ * @author CGM from Charlie's archetypes
  */
 
 /*global ELF:true*/
@@ -17,17 +17,16 @@ EasyMapLocation = (function() {
 		return d;
 	}
 
-	function President(initName, initStart, initEnd, initBorn, initDied) {
-		Object.defineProperty(this, "PresidentName", withValue(initName));
-		Object.defineProperty(this, "TermStart", withValue(initStart));
-		Object.defineProperty(this, "TermEnd", withValue(initEnd));
-		Object.defineProperty(this, "Born", withValue(initBorn));
-		Object.defineProperty(this, "Died", withValue(initDied));
+	function Location(initCity, initLatitude, initLongitude, initDescription) {
+		Object.defineProperty(this, "LocationName", withValue(initCity));
+		Object.defineProperty(this, "Latitude", withValue(initLatitude));
+		Object.defineProperty(this, "Longitude", withValue(initLongitude));
+		Object.defineProperty(this, "Description", withValue(initDescription));
 	}
 
 	// Readonly, we can't init
 	/*
-	President.prototype.init = function(initName, initStart, initEnd, initBorn, initDied) {
+	Location.prototype.init = function(initName, initStart, initEnd, initBorn, initDied) {
 		this.PresidentName = initName;
 		this.TermStart = initStart;
 		this.TermEnd = initEnd;
@@ -35,23 +34,21 @@ EasyMapLocation = (function() {
 		this.Died = initDied;
 	}; */
 
-	President.prototype.initFromJSON = function(json) {
-		this.PresidentName = json.presidentName;
-		this.TermStart = json.termStart;
-		this.TermEnd = json.termEnd;
-		this.Born = json.born;
-		this.Died = json.died;
+	Location.prototype.initFromJSON = function(json) {
+		this.LocationName = json.locationName;
+		this.Latitude = json.latitude;
+		this.Longitude = json.longitude;
+		this.Description = json.description;
 	};
 
-	President.prototype.toJSON = function() {
+	Location.prototype.toJSON = function() {
 		return {
-			presidentName : this.PresidentName,
-			termStart : this.TermStart,
-			termEnd : this.TermEnd,
-			born : this.Born,
-			died : this.Died
+			locationName : this.LocationName,
+			latitude : this.Latitude,
+			longitude : this.Longitude,
+			description : this.Description,
 		};
 	};
 
-	return President;
+	return Location;
 })();

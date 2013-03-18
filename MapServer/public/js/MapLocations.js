@@ -14,6 +14,11 @@ var MapLocations = (function(displayInit, initUtilities) {
 	var radioSelection = function() {
 		selectedItem = $("input[name=responseGroup]:checked").attr('id');
 		locationName = $("input[name=responseGroup]:checked").attr('locationName');
+		latitudey = $("input[name=responseGroup]:checked").attr('latitude');
+		longitudey = $("input[name=responseGroup]:checked").attr('longitude');
+		//KLUDGE FINAL add a description here? Maybe NOT if not displayed ...
+		
+		/* We no longer have the "first [middle] last" paradigm for one field: use it ALL 
 		var locDetails = locationName.split(' ');
 		var firstName = locDetails[0];
 		var lastName = '';
@@ -31,13 +36,15 @@ var MapLocations = (function(displayInit, initUtilities) {
 		if (middleName !== undefined)
 			middleName = ($.trim(middleName) === '-' ? '' : $.trim(middleName));
 		display.showDebug(selectedItem);
-		$('#firstName').val(firstName);
+		*/ 
+		$('#firstName').val(locationName);
 		
 		// KLUDGE BUG FIX HERE??  ASSIGNING 3 to .length?!?
-		if (locDetails.length = 3) {
-			$('#middleName').val(middleName);
-		}
-		$('#lastName').val(lastName);
+		//if (locDetails.length = 3) {
+		//	$('#middleName').val(middleName);
+		//}
+		$('#middleName').val(latitudey)
+		$('#lastName').val(longitudey);
 	};
 
 	var clearResponse = function(debugMessage) {
