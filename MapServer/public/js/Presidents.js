@@ -122,7 +122,7 @@ var Presidents = (function(displayInit, initUtilities) {
 		var pName = firstName + " " + middleName + " " + lastName;
 		display.showDebug("inserting: " + pName);
 		clearResponse('called putitem');
-		var president = new ELF.EasyPresident(pName, 5, 6, 7, 8);
+		var president = new Map.own.EasyPresident(pName, 5, 6, 7, 8);
 		var query = president.toJSON();
 		presidentsList.push(query);
 		showPresidents();
