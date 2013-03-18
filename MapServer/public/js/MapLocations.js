@@ -135,7 +135,7 @@ var MapLocations = (function(displayInit, initUtilities) {
 		showLocations(false);	// We're NOT inserting a new loc here..	
 	};
 
-	MapLocations.prototype.clearFields() {
+	MapLocations.prototype.clearFields = function() {
 		$('#locationName').val("");
 		$('#latitude').val("");
 		$('#longitude').val("");
